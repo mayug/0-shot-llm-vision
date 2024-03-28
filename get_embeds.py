@@ -9,7 +9,7 @@ from transformers import ConvNextImageProcessor, ConvNextForImageClassification
 from transformers import AutoImageProcessor, DetrModel
 from transformers import SegformerForSemanticSegmentation
 from PIL import Image
-import requests
+import argparse
 from torchvision.models.feature_extraction import create_feature_extractor
 from transformers import SamModel, SamProcessor
 from transformers import SegformerModel
@@ -21,12 +21,11 @@ import numpy as np
 
 import torch, random
 from tqdm import tqdm
-import sys
-import re
+import os
 
-COCO_ROOT = "/datasets/coco_2024-01-04_1601/val2017"
+COCO_ROOT = "/datasets/coco2017_2024-01-04_1601/val2017"
 NOCAPS_ROOT = "/shared/group/openimages/validation"
-COCO_ANN = "/datasets/coco_2024-01-04_1601/annotations/captions_val2017.json"
+COCO_ANN = "/datasets/coco2017_2024-01-04_1601/annotations/captions_val2017.json"
 NOCAPS_ANN = "nocaps_val_4500_captions.json"
 
 def parse_args():
@@ -54,7 +53,7 @@ def parse_args():
         "--gpu",
         dest="gpu",
         help="gpu",
-        default=7,
+        default=1,
         type=int,
     )
     return parser.parse_args()
@@ -361,15 +360,15 @@ def run_model(model_name, model_transform, cap, device):
 if __name__ == "__main__":
     args = parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"]=str(args.gpu)
-    gpu = 'cuda'
+    gpu = f'cuda:{args.gpu}'
     device = torch.device(gpu)
+    torch.cuda.empty_cache()
 
     model_name = args.model_name
     dataset = args.dataset
 
     model_transform = get_model(model_name, device)
-    cap = get_model(dataset)
+    cap = get_dataset(dataset)
     run_model(model_name, model_transform, cap, device)
 
     

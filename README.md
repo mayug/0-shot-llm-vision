@@ -2,21 +2,28 @@
 
 This project is an implementation of the paper "Do Vision and Language Encoders Represent the World Similarly?". It aims to explore the similarities between vision and language encoders by comparing their representations of the world.
 
+## Setup 
+To set up the project environment using conda, follow these steps: 
+
+1. Clone the repository: ```git clone https://github.com/mayug/0-shot-llm-vision.git```
+2. Navigate to the project directory: ```cd 0-shot-llm-vision```
+3. Create a new conda environment: ```conda create --name vlm python=3.10```
+4. Install appropiate pytorch version from [here](https://pytorch.org/get-started/locally/).
+5. Install the required dependencies: ```pip install -r requirements.txt```
+
+Now you have a conda environment set up with all the necessary dependencies installed.
+
 ## Folder Structure
 
 The project has the following folder structure:
 
-​```
-.
-├── data
-├── results
-├── seedwise
-├── src
-│   └── utils.py
-├── cluster.py
-├── get_embeds.py
-└── run.py
-​```
+--- data
+--- results
+--- seedwise        
+--- src
+--- cluster.py        
+--- get_embeds.py   
+--- run.py      
 
 - `data`: This folder stores the retrieved text and image embeddings. The file naming convention is `{dataset}_{model_name}_img.pt` for image embeddings and `{dataset}_{model_name}_text.pt` for text embeddings.
 - `results`: This folder stores the algorithm results averaged over the considered seeds.
