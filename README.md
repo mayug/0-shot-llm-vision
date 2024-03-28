@@ -15,15 +15,7 @@ Now you have a conda environment set up with all the necessary dependencies inst
 
 ## Folder Structure
 
-The project has the following folder structure:
-
---- data
---- results
---- seedwise        
---- src
---- cluster.py        
---- get_embeds.py   
---- run.py      
+The project has the following folder structure:    
 
 - `data`: This folder stores the retrieved text and image embeddings. The file naming convention is `{dataset}_{model_name}_img.pt` for image embeddings and `{dataset}_{model_name}_text.pt` for text embeddings.
 - `results`: This folder stores the algorithm results averaged over the considered seeds.
