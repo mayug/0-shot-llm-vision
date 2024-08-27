@@ -2,6 +2,9 @@
 
 This project is an implementation of the paper "Do Vision and Language Encoders Represent the World Similarly?" accepted CVPR 2024. 
 
+[Paper Link](https://openaccess.thecvf.com/content/CVPR2024/papers/Maniparambil_Do_Vision_and_Language_Encoders_Represent_the_World_Similarly_CVPR_2024_paper.pdf)
+
+[Video/Slides](https://cvpr.thecvf.com/virtual/2024/poster/31676)
 
 This project investigates the alignment between vision and language encoders, specifically analyzing whether unimodal vision and language models, which represent the same physical world, share semantic similarities in their latent spaces. We find that well trained vision and language encoders have high semantic similarity between their encoder spaces. Using Centered Kernel Alignment (CKA) and seeded graph-matching techniques, we further explore the potential for matching unaligned encoders without additional training. The research introduces two methods: Fast Quadratic Assignment Problem optimization and a novel localized CKA-based matching, demonstrating their effectiveness across tasks like cross-lingual, cross-domain caption matching, and image classification. The findings suggest that vision encoders trained on large datasets exhibit semantic similarities to language encoders, enabling zero-shot communication between these modalities.  
 
