@@ -1,6 +1,27 @@
-# Vision and Language Encoder Similarity Project
+# Do Vision and Language Encoders Represent the World Similarly?
 
-This project is an implementation of the paper "Do Vision and Language Encoders Represent the World Similarly?". It aims to explore the similarities between vision and language encoders by comparing their representations of the world.
+This project is an implementation of the paper "Do Vision and Language Encoders Represent the World Similarly?" accepted CVPR 2024. 
+
+
+This project investigates the alignment between vision and language encoders, specifically analyzing whether unimodal vision and language models, which represent the same physical world, share semantic similarities in their latent spaces. We find that well trained vision and language encoders have high semantic similarity between their encoder spaces. Using Centered Kernel Alignment (CKA) and seeded graph-matching techniques, we further explore the potential for matching unaligned encoders without additional training. The research introduces two methods: Fast Quadratic Assignment Problem optimization and a novel localized CKA-based matching, demonstrating their effectiveness across tasks like cross-lingual, cross-domain caption matching, and image classification. The findings suggest that vision encoders trained on large datasets exhibit semantic similarities to language encoders, enabling zero-shot communication between these modalities.  
+
+
+
+
+![asd](/images/combined_v10_with_star.png)
+*Kernel CKA and QAP Matching accuracy are correlated with the training set size and quality of the training set. Here
+the language encoder is kept constant to the best BERT-sentence encoder (i.e.All-Roberta-large-v1). There is a clear correlation between
+CKA and QAP Matching accuracy across all architectures, training paradigm and data regimes*
+
+
+
+![asd](/images/cka_max_simple_illustration_v5_flip.png)
+*For matching, we calculate the kernels for image and
+text embeddings and employ QAP-based seeded matching to max-
+imize CKA for obtaining the optimal permutation P . For retrieval,
+we append query embeddings to base embeddings and retrieve the
+best caption that maximizes the local CKA for a query image*
+
 
 ## Setup 
 To set up the project environment using conda, follow these steps: 
@@ -17,7 +38,7 @@ Now you have a conda environment set up with all the necessary dependencies inst
 
 The project has the following folder structure:    
 
-- `data`: This folder stores the retrieved text and image embeddings. The file naming convention is `{dataset}_{model_name}_img.pt` for image embeddings and `{dataset}_{model_name}_text.pt` for text embeddings.
+- `data`: This folder stores the retrieved text and image embeddings. The file naming convention is `{dataset}_{model_name}_img.pt` for image embeddings anv
 - `results`: This folder stores the algorithm results averaged over the considered seeds.
 - `seedwise`: This folder stores the algorithm results for each individual seed.
 - `src`: This folder contains the code for the algorithms used in the project.
@@ -99,3 +120,15 @@ The `run.py` script is the main entry point of the project. It performs the foll
 
 Example command:
 ```python run.py --m linear --b 320 --q 500 --c 0 --vid_model dinov2 --text_model allroberta --base_data coco --query_data nocaps --gpu 0```
+
+
+If you find our work useful, please cite us. 
+
+```bibtex
+@inproceedings{maniparambil2024vision,
+  title={Do Vision and Language Encoders Represent the World Similarly?},
+  author={Maniparambil, Mayug and Akshulakov, Raiymbek and Djilali, Yasser Abdelaziz Dahou and El Amine Seddik, Mohamed and Narayan, Sanath and Mangalam, Karttikeya and O'Connor, Noel E},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={14334--14343},
+  year={2024}
+}
